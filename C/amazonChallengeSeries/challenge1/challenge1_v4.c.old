@@ -1,0 +1,143 @@
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <strings.h>
+
+# define WORD_LENGTH 15
+# define PARA_LENGTH 200000
+
+/*
+struct storeWords
+{
+	char words[WORD_LENGTH];
+	struct storeWords *next;
+};
+
+struct storeWords *createWordNodes (struct storeWords *start, struct storeWords *last, char *word)
+{
+	struct storeWords *temp;
+	if (start)
+	{
+		temp = 
+	}
+}
+*/
+
+int checkWordIfExists (char *word, char **seqWords, int numOfWords)
+{
+	int flag = -1, i;
+	for (i = 0; i < numOfWords; i++)
+	{
+		if (strcasecmp (word, *(seqWords + i)) == 0)
+		{
+			flag = i;
+			break;
+		}
+	}
+	return flag;
+}
+
+void printSubsequence (char **subSequence, int startIndex, int numOfWords)
+{
+	int i;
+	for (i = 0; i < numOfWords - 1; i++)
+		printf ("%s ", *(subSequence + i + startIndex));
+	printf ("%s", *(subSequence + i + startIndex));
+}
+
+int checkForCompletion (int *subSequence, int numOfWords)
+{
+	int i, sum = 0;
+	for (i = 0; numOfWords; i++)
+		sum = sum + *(subSequence + i);
+	if (sum = numOfWords)
+		return 1;
+	else
+		return 0;
+}
+
+void findShortestSubsequence (char **testParaInWords, int totalNumOfWords, int numOfWords, char **seqWords)
+{
+	int subSequenceFound = 0, lengthOfSubsequence = 100000, tempLengthOfSubsequence = 0;
+	int tempIndexStart = -1, finalIndexStart = -1;
+	int i, wordExists;
+	int subSequence[numOfWords];
+	for (i = 0; i < totalNumOfWords; i++)
+	{
+		tempLengthOfSubsequence++;
+		wordExists = checkWordIfExists (*(testParaInWords + i), seqWords, numOfWords);
+		if (wordExists != -1)
+		{
+			subSequence[wordExists] = 1;
+			subSequenceFound = checkForCompletion (subSequence, numOfWords);
+			if (subSequenceFound)
+			{
+				if (tempLengthOfSubsequence < lengthOfSubsequence)
+				{
+					finalIndexStart = tempIndexStart;
+					lengthOfSubsequence = tempLengthOfSubsequence;
+				}
+				i = tempIndexStart;
+			}
+		}
+	}
+	// If subsequence exists, print the subsequence, else print "NO SUBSEGMENT FOUND"
+	if (subSequenceFound)
+		printSubsequence (testParaInWords, finalIndexStart, lengthOfSubsequence);
+	else
+		printf ("NO SUBSEGMENT FOUND");
+}
+
+void main ()
+{
+	int i, numOfWords, totalNumOfWords = 1;
+	char *testPara, *testParaCopy, **subSeqChars, *words;
+	char **testParaInWords;
+	struct storeWords  *start, *last;
+	last = NULL;
+	start = NULL;
+
+	testPara = (char *) malloc (PARA_LENGTH);
+	testParaCopy = (char *) malloc (PARA_LENGTH);
+	gets (testPara);
+	testParaCopy = strcpy (testParaCopy, testPara);
+	scanf ("%d", &numOfWords);
+
+	words = strtok (testPara, " .,");
+	while (words)
+	{
+		totalNumOfWords++;
+		//start = createWordNodes (start, last, words);
+		printf ("Line:%d word:%s\n", __LINE__, words);
+		words = strtok (NULL, " .,");
+	}
+	testPara = strcpy (testPara, testParaCopy);
+	free (testParaCopy);
+	testParaInWords = (char **) malloc (sizeof (char *) * totalNumOfWords);
+	words = strtok (testPara, " ,.");
+	testParaInWords[0] = (char *) malloc (WORD_LENGTH);
+	*testParaInWords = strcpy (*testParaInWords, words);
+	//printf ("%d: %s =============== %s\n", __LINE__, *(testParaInWords + 0), words);
+	i = 0;
+	while (words)
+	{
+		//i++;
+		//words = strtok (NULL, " .,");
+		printf ("%d: %s\n", __LINE__, words);
+		*(testParaInWords + i) = (char *) malloc (WORD_LENGTH);
+		*(testParaInWords + i) = strcpy (*(testParaInWords + i), words);
+		words = strtok (NULL, " .,");
+		//printf ("%d: %d == %s\n", __LINE__, i, *(testParaInWords + i));
+	}
+	free (testPara);
+	printf ("Line:%d word:%s\n", __LINE__, "Reached");
+	
+	subSeqChars = (char **) malloc (sizeof (char *) * numOfWords);
+	for (i = 0; i < numOfWords; i++)
+	{
+		subSeqChars[i] = (char *) malloc (WORD_LENGTH);
+		scanf ("%s", subSeqChars[i]);
+	}
+	findShortestSubsequence (testParaInWords, totalNumOfWords, numOfWords, subSeqChars);
+	//return 0;
+}
