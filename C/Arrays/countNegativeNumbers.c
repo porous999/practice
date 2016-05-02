@@ -37,7 +37,9 @@ void printArray (int **arr, int m, int n)
 		
 }
 
-int main ()
+int countNegativeNumbers(int **arr, int m, int n);
+
+void main ()
 {
 	int **arr, m, n;
 	
@@ -52,5 +54,24 @@ int main ()
 	arr = fillArray (arr, m, n);
 	printArray(arr, m, n);
 	
-	return 0;
+	printf ("Number of negative elements are: %d\n", countNegativeNumbers (arr, m, n));
+}
+
+int countNegativeNumbers(int **arr, int m, int n)
+{
+	int i, j = n - 1;
+	int numberOfLoops = 0;
+	int negativeCount = 0;
+	
+	for (i = 0; i < m; i++)
+	{
+		while (*(*(arr + i) + j) >= 0 && j-- > 0)
+			numberOfLoops++;
+		printf ("For row %d, negative numbers count = %d\n", i, j + 1);
+		//if ()
+		negativeCount = negativeCount + j + 1;
+		numberOfLoops++;
+	}
+	printf ("After %d loops, we get the response!\n", numberOfLoops);
+	return negativeCount;
 }
