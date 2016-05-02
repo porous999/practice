@@ -65,8 +65,10 @@ int countNegativeNumbers(int **arr, int m, int n)
 	
 	for (i = 0; i < m; i++)
 	{
-		while (*(*(arr + i) + j) >= 0 & j-- >= 0)
+		while (*(*(arr + i) + j) >= 0 && j-- > 0)
 			numberOfLoops++;
+		printf ("For row %d, negative numbers count = %d\n", i, j + 1);
+		//if ()
 		negativeCount = negativeCount + j + 1;
 		numberOfLoops++;
 	}
