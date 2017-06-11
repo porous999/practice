@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Created by tanmays on 16/5/17.
  * Problem definition to be found here: https://www.hackerrank.com/challenges/crush
  */
-public class Solution {
+public class Solution_v1 {
     public static void main (String args[]) {
 
         int N, M, a, b, k;
@@ -18,7 +18,6 @@ public class Solution {
         M = thisScanner.nextInt();
 
         int[] array_N = new int[N];
-        int[][] array_M = new int[M][2];
 
         /*for (i = 0; i < N; i++)
             System.out.println(array_N[i]);*/
