@@ -28,7 +28,7 @@ public class Validate_n_Sort {
         boolean valid = true;
 
         //String[] testcases = new String[numofcases];
-        List<String> testcases = new LinkedList<>();
+        List<String> testcases = new LinkedList<String>();
 
         for (int i = 0; i < numofcases; i++) {
             tempstring = myscanner.next();
@@ -50,9 +50,9 @@ public class Validate_n_Sort {
         Collections.sort(testcases);
 
         System.out.println("Strings accepted are:");
-        for (int i = 0; i < testcases.size(); i++)
-            System.out.println(testcases.get(i));
-
+        for (String temp:testcases) {
+            System.out.println(temp);
+        }
     }
 
     /*

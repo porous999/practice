@@ -23,7 +23,7 @@ public class Solution {
         reader.nextLine(); //Consuming the \n
 
         String caseString;
-        List<String> caseList = new ArrayList<>(n);
+        List<String> caseList = new ArrayList<String>(n);
 
         for(int i = 0; i < n; i++)
             caseList.add(reader.nextLine());

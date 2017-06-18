@@ -1,6 +1,8 @@
 package Hackerrank.SherlockString;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Created by tanmays on 14/5/17.
@@ -20,9 +22,9 @@ public class Solution {
 
     private static String SolveWatsonRiddle(String WatsonString) {
 
-        String RiddleAnswer = "YES";
+        String RiddleAnswer;
         int WatsonStringLength = WatsonString.length();
-        Map<Character, Integer> WatsonStringDictionary = new HashMap<>();
+        Map<Character, Integer> WatsonStringDictionary = new HashMap<Character, Integer>();
 
         for (int i = 0; i < WatsonStringLength; i++){
             if(WatsonStringDictionary.get(WatsonString.charAt(i)) == null)
@@ -48,7 +50,7 @@ public class Solution {
                 break;
             }
         }
-        if(RiddleAnswer == "YES")
+        if(RiddleAnswer.equals("YES"))
             return RiddleAnswer;
 
         // Checking for cases where initial string validity fails
