@@ -34,8 +34,8 @@ public class Solution {
                         WatsonStringDictionary.get(WatsonString.charAt(i)) + 1);
         }
 
-        for (char eachkey:WatsonStringDictionary.keySet())
-            System.out.print("(" + eachkey + ", " + WatsonStringDictionary.get(eachkey) +"); ");
+        /*for (char eachkey:WatsonStringDictionary.keySet())
+            System.out.print("(" + eachkey + ", " + WatsonStringDictionary.get(eachkey) +"); ");*/
 
         // Checking if initial riddle is "valid"
         int tempfreq1 = -1, tempfreq2 = -1;
