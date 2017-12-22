@@ -1,4 +1,4 @@
-def waitingTime(tickets, p):
+def waiting_time(tickets, p):
     counter = 0
     total_queue = len(tickets)
     i = 0
@@ -26,5 +26,5 @@ def maxTokens(friends_nodes, friends_from, friends_to, friends_weight):
 
 
 if __name__ == '__main__':
-    print (waitingTime([2,6,3,4,5], 2))
+    print (waiting_time([2, 6, 3, 4, 5], 2))
     # print(maxTokens([1, 2, 3, 4], [1, 1, 2, 3], [2, 3, 3, 4], [1, 2, 1, 2]))
