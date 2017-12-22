@@ -1,4 +1,4 @@
-# practice
+# Basic Codez
 Backup of my simple codes
 
 
