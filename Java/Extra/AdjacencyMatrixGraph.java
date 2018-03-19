@@ -8,22 +8,22 @@ Although some new customized methods were added.
 
 import java.util.Scanner;
 
-public class RepresentGraphFromAdjacencyMatrix {
+public class AdjacencyMatrixGraph {
     private int[][] adjacencyMatrix;
-    private RepresentGraphFromAdjacencyMatrix thisGraph;
+    private AdjacencyMatrixGraph thisGraph;
 
-    RepresentGraphFromAdjacencyMatrix(int vertices) {
+    AdjacencyMatrixGraph(int vertices) {
         adjacencyMatrix = new int[vertices + 1][vertices + 1];
-        thisGraph = new RepresentGraphFromAdjacencyMatrix(vertices);
     }
 
-    public RepresentGraphFromAdjacencyMatrix(int vertices, int[][] adjacencyMatrix) {
+
+    private AdjacencyMatrixGraph(int vertices, int[][] adjacencyMatrix) {
 
     }
 
-    private void makeEdge(int to, int from, int edge) {
+    public void makeEdge(int to, int from, int weight) {
         try {
-            adjacencyMatrix[to][from] = edge;
+            adjacencyMatrix[to][from] = weight;
         } catch (ArrayIndexOutOfBoundsException index) {
             System.out.println("The vertices does not exists");
         }
@@ -38,7 +38,7 @@ public class RepresentGraphFromAdjacencyMatrix {
         return -1;
     }
 
-    public void printGraph(int vertices, RepresentGraphFromAdjacencyMatrix graph){
+    public void printGraph(int vertices, AdjacencyMatrixGraph graph){
         System.out.println("The adjacency matrix for the given graph is: ");
         System.out.print("  ");
         for (int i = 1; i <= vertices; i++)
@@ -56,16 +56,16 @@ public class RepresentGraphFromAdjacencyMatrix {
     public static void main(String args[]) {
         int vertices, edges, count = 1, to, from;
         Scanner thisScanner = new Scanner(System.in);
-        RepresentGraphFromAdjacencyMatrix graph;
+        AdjacencyMatrixGraph graph;
         try {
             System.out.println("Enter the number of vertices: ");
             vertices = thisScanner.nextInt();
             System.out.println("Enter the number of edges: ");
             edges = thisScanner.nextInt();
 
-            graph = new RepresentGraphFromAdjacencyMatrix(vertices);
+            graph = new AdjacencyMatrixGraph(vertices);
 
-            System.out.println("Enter the edges with spaces: <to> <from>(both int, vertices id)");
+            System.out.println("Enter the edges with spaces: <to> <from>(both int, vertices id starting from 1)");
             while (count <= edges) {
                 to = thisScanner.nextInt();
                 from = thisScanner.nextInt();
