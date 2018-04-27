@@ -2,8 +2,8 @@ from common.get_ip_address import get_ip_address
 from common.is_port_open import isOpen
 
 IP_PREFIX = "192.168.0."
+PORT=8080
 NETWORK_INTERFACE_NAME = "wlp6s0"
-
 
 if __name__ == "__main__":
 
@@ -19,8 +19,8 @@ if __name__ == "__main__":
             continue
 
         print("Trying IP: %s" % host_ip)
-        if isOpen(host_ip, 22):
-            print("SSH host open at: %s... Will show consolidated list at the end.." % host_ip)
+        if isOpen(host_ip, PORT):
+            print("%s open at: %s... Will show consolidated list at the end.." % (PORT,host_ip))
             ssh_host_list.append(host_ip)
 
     if ssh_host_list is not []:
