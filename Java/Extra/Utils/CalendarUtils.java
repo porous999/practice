@@ -56,7 +56,7 @@ public class CalendarUtils {
         return year * 100 + getWeekFromCalendar(thisCalenderObj);
     }
 
-    private static int getWeekFromCalendar(Calendar calendar) {
+    public static int getWeekFromCalendar(Calendar calendar) {
         int thisWeek = calendar.get(Calendar.WEEK_OF_YEAR);
         if (calendar.get(Calendar.MONTH) == Calendar.DECEMBER && thisWeek == 1)
             thisWeek = 53;

@@ -1,15 +1,25 @@
 package HelloWorld;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import static Extra.Utils.CalendarUtils.getCalenderYearWeekList;
+import static Extra.Utils.CalendarUtils.getWeekFromCalendar;
 
 public class HelloWorld {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO Auto-generated method stub
 
         System.out.println("Hello world!!");
         //System.out.println("abcd".compareTo("abcde"));
-        System.out.println(getCalenderYearWeekList(dateTimestamp.Jan01_2011.timestamp, dateTimestamp.Jan24_2019.timestamp));
+        //System.out.println(getCalenderYearWeekList(dateTimestamp.Jan01_2011.timestamp, dateTimestamp.Jan24_2019.timestamp));
+        Calendar c = Calendar.getInstance();
+        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        c.setTime( sdf.parse("31/12/2010"));
+        System.out.println( getWeekFromCalendar(c) );
     }
 
     enum dateTimestamp {
@@ -26,4 +36,37 @@ public class HelloWorld {
             this.timestamp = timestamp;
         }
     }
+
+    /*
+     * Write a function:
+
+     function solution(A);
+
+     that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.
+
+     For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
+
+     Given A = [1, 2, 3], the function should return 4.
+
+     Given A = [−1, −3], the function should return 1.
+
+     Assume that:
+
+     N is an integer within the range [1..100,000];
+     each element of array A is an integer within the range [−1,000,000..1,000,000].
+     Complexity:
+
+     expected worst-case time complexity is O[N];
+     expected worst-case space complexity is O[N] (not counting the storage required for input arguments).
+
+
+     */
+    /*int getMinNumber(int[] thisArray) {
+
+        int minNum = 1;
+        for (int eachElement: thisArray) {
+            if ()
+        }
+        return minNum;
+    }*/
 }
