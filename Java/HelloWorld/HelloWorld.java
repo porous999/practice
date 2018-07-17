@@ -1,25 +1,31 @@
 package HelloWorld;
 
+import java.io.*;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import static Extra.Utils.CalendarUtils.getCalenderYearWeekList;
 import static Extra.Utils.CalendarUtils.getWeekFromCalendar;
 
 public class HelloWorld {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws IOException, ParseException {
         // TODO Auto-generated method stub
 
         System.out.println("Hello world!!");
         //System.out.println("abcd".compareTo("abcde"));
         //System.out.println(getCalenderYearWeekList(dateTimestamp.Jan01_2011.timestamp, dateTimestamp.Jan24_2019.timestamp));
-        Calendar c = Calendar.getInstance();
+        /*Calendar c = Calendar.getInstance();
         DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         c.setTime( sdf.parse("31/12/2010"));
-        System.out.println( getWeekFromCalendar(c) );
+        System.out.println( getWeekFromCalendar(c) );*/
+        getAllJsonTogether();
     }
 
     enum dateTimestamp {
@@ -69,4 +75,30 @@ public class HelloWorld {
         }
         return minNum;
     }*/
+
+    @SuppressWarnings("I know them all")
+    static void getAllJsonTogether() throws IOException {
+
+        File inputMessageDir = new File("/home/tanmays/temp/15116/sparkout/allmessages");
+        File outJsonFile = new File("/home/tanmays/temp/15116/allmessages.json");
+        FileReader myFileReader;
+        BufferedReader myBufferedReader;
+        JSONObject myJsonObject;
+        for (File eachFile : inputMessageDir.listFiles()) {
+            myFileReader = new FileReader(eachFile);
+            myBufferedReader = new BufferedReader(myFileReader);
+            String eachline = myBufferedReader.readLine();
+            while (null != eachline) {
+                try {
+                    myJsonObject = (JSONObject) new JSONParser().parse(eachline);
+                    System.out.println();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
 }
