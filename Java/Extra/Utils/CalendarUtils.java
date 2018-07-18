@@ -1,5 +1,9 @@
 package Extra.Utils;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -63,4 +67,28 @@ public class CalendarUtils {
         return thisWeek;
     }
 
+    public static void main(String[] args) throws IOException, ParseException {
+        // TODO Auto-generated method stub
+
+        System.out.println(getCalenderYearWeekList(dateTimestamp.Jan01_2011.timestamp, dateTimestamp.Jan24_2019.timestamp));
+        Calendar c = Calendar.getInstance();
+        /*DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        c.setTime( sdf.parse("31/12/2010"));
+        System.out.println( getWeekFromCalendar(c) );*/
+    }
+
+    enum dateTimestamp {
+        Jan01_2011(1293840000L),    // Saturday
+        Jan01_2018(1514764800L),
+        Dec28_2018(1545955200L),
+        Dec31_2018(1546214400L),    // Monday
+        Jan01_2019(1546300800L),
+        Jan24_2019(1548288000L);
+
+        private Long timestamp;
+
+        dateTimestamp(long timestamp) {
+            this.timestamp = timestamp;
+        }
+    }
 }
