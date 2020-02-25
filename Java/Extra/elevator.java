@@ -1,6 +1,0 @@
-package Extra;
-
-class elevator
-{
-	
-}
