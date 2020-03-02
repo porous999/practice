@@ -15,25 +15,31 @@ public class TryGuavaCache {
 
     public static void main(String[] args) {
         Logger logger = Logger.getLogger(TryGuavaCache.class.getSimpleName());
-        Cache<String, Integer> myCache = CacheBuilder.newBuilder()
-                .removalListener(new RemovalListener<String, Integer>() {
+        Cache<String, String> myCache = CacheBuilder.newBuilder()
+                .removalListener(new RemovalListener<String, String>() {
                     @Override
-                    public void onRemoval(RemovalNotification<String, Integer> removalNotification) {
+                    public void onRemoval(RemovalNotification<String, String> removalNotification) {
                         logger.info("RemovalNotification: " + removalNotification.wasEvicted());
                         logger.info("RemovalNotification: 1: " + removalNotification.getKey() + " " + removalNotification.getValue());
                     }
                 })
-                .expireAfterWrite(2, TimeUnit.SECONDS)
+                .expireAfterWrite(2, TimeUnit.MINUTES)
                 .build();
-        myCache.put("key1", 1);
+        myCache.put("some_key", "some_value");
+        logger.info("Invalidating an absent key!");
+        myCache.invalidate("no_key");
         boolean exit = false;
+        int count = 1;
         while (!exit) {
-            Integer valueInt = myCache.getIfPresent("key1");
-            if (null == valueInt) {
+            if (count > 10)
+                myCache.invalidate("some_key");
+
+            String valueStr = myCache.getIfPresent("some_key");
+            if (null == valueStr) {
                 logger.info("Value absent!!");
                 exit = true;
             } else
-                logger.info("Value exists - " + valueInt);
+                logger.info("Value exists - " + count++ + " - " + valueStr);
         }
     }
 }
