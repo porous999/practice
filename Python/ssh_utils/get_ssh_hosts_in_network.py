@@ -1,5 +1,5 @@
-from common.get_ip_address import get_ip_address
-from common.is_port_open import isOpen
+from ssh_utils.get_ip_address import get_ip_address
+from ssh_utils.is_port_open import isOpen
 
 IP_PREFIX = "192.168.0."
 PORT=8080

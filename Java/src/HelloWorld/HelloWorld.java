@@ -1,50 +1,84 @@
 package HelloWorld;
 
-import org.json.simple.parser.ParseException;
-
 import java.io.File;
 import java.io.IOException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.Date;
+
+import static java.lang.Math.abs;
 
 public class HelloWorld {
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException {
         // TODO Auto-generated method stub
 
         System.out.println("Hello world!!");
         System.out.println(String.format("Hello world!! %s",  Arrays.toString(new int[]{1, 2})));
 
-        deleteDirectoryRecursively(new File("/home/tanmays/temp/00delete/23008"));
-        new File("/home/tanmays/temp/00delete/23008");
-        Date hereDate = new Date();
-        Format dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String tempDate = dateFormat.format(hereDate);
+        //try1();
+        //fetchingExercise();
 
-        String[] dateList = tempDate.split(" ");
-        String thisDate = dateList[0];
-        String statsS3KeyFormat = "aggregated-stats/top_10_switchport_tx_peakbps_by_site_id/dt=%s/last_30_day";
-        String s3Key = String.format(statsS3KeyFormat, thisDate);
-        System.out.println("Here: " + s3Key);
+        // compareTimestampStr();
+
+        //useInstant();
 
         //System.out.format("Hello world!! %d",new int[]{1, 2});
 
         //System.out.println("abcd".compareTo("abcde"));
     }
 
-    private static void deleteDir(String dirPath) {
-        File dirFile = new File(dirPath);
-        File[] files = dirFile.listFiles();
-        for (File thisFile:files) {
-            thisFile.delete();
-        }
-        dirFile.delete();
+
+
+    private static java.sql.Timestamp convertRFC3339NanoToTimestamp(String t) {
+        return new java.sql.Timestamp(convertIso8601ToInstant(t).toEpochMilli());
     }
 
+    private static Instant convertIso8601ToInstant(String timestamp) throws DateTimeParseException {
+        return OffsetDateTime.parse(timestamp).toInstant();
+    }
 
-    static void deleteDirectoryRecursively(File file) throws IOException {
+    static String fetchWordInBetweenFromText(String textStr, String prevWord, String nextWord) {
+
+        String wordOfInterest = "";
+
+        String[] messageSplit = textStr.split("\\s+");
+        int indexForPrevWord = indexOfWordInArray(prevWord, messageSplit);
+
+        if (indexForPrevWord > -1) {
+            while (indexForPrevWord++ < messageSplit.length && !messageSplit[indexForPrevWord].equals(nextWord)) {
+                wordOfInterest = wordOfInterest.concat(messageSplit[indexForPrevWord]);
+                if (!wordOfInterest.isEmpty()) {
+                    wordOfInterest = wordOfInterest.replaceAll("\"", "");
+                }
+            }
+        }
+
+        return wordOfInterest;
+    }
+
+    /**
+     * Returns index of the word, if detected, else returns -1
+     * @param word          Word of interest
+     * @param textArray     Array to search for the word
+     * @return              Index of the word in the textArray, if detected. Else -1
+     */
+    public static int indexOfWordInArray(String word, String[] textArray) {
+        int indexOfInterest = -1;
+        for (int i = 0; i < textArray.length; i++) {
+            String eachword = textArray[i];
+            if (eachword.equals(word)) {
+                indexOfInterest = i;
+                break;
+            }
+        }
+        return indexOfInterest;
+    }
+
+    private static void deleteDirectoryRecursively(File file) throws IOException {
         if (file.isDirectory()) {
             File[] entries = file.listFiles();
             if (entries != null) {
@@ -57,9 +91,7 @@ public class HelloWorld {
     }
 
     /*
-     * Write a function:
-
-     function solution(A);
+     * Write a function: solution(A)
 
      that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.
 
@@ -80,13 +112,26 @@ public class HelloWorld {
 
 
      */
-    /*int getMinNumber(int[] thisArray) {
 
-        int minNum = 1;
-        for (int eachElement: thisArray) {
-            if ()
+    static int solution(int[] A) {
+        return findMinMissingNumber(A);
+    }
+
+    static int findMinMissingNumber(int[] thisArray) {
+
+        int maxValPossibleInA = 1_000_000;
+        int[] parallelArray = new int[maxValPossibleInA + 1];
+
+        for (int a: thisArray) {
+            if (a > 0)
+                parallelArray[a] = 1;
         }
-        return minNum;
-    }*/
+        for (int i = 1; i < maxValPossibleInA; i++) {
+            if (parallelArray[i] == 0) {
+                return i;
+            }
+        }
+        return 1;
+    }
 
 }
