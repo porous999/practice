@@ -2,6 +2,7 @@ package HelloWorld;
 
 import org.junit.Test;
 
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
 
@@ -24,7 +25,7 @@ public class HelloWorldTest {
 
     @Test
     public void testConvertRFC3339NanoToTimestamp() {
-        assertEquals("2020-05-05 11:40:02.795", convertRFC3339NanoToTimestamp("2020-05-05T06:10:02.795424597Z"));
+        assertEquals(1588659002795L, convertRFC3339NanoToTimestamp("2020-05-05T06:10:02.795424597Z").getTime());
     }
 
     @Test

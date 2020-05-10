@@ -45,7 +45,7 @@ public class SumTwoNumbersTest {
     }
 
     private boolean assertNumberList(ListNode numberList1, ListNode numberList2) {
-        return (null == numberList1 && null == numberList2) ||
+        return (null == numberList1) ||
                 (numberList1.val == numberList2.val && assertNumberList(numberList1.next, numberList2.next));
     }
 
