@@ -17,14 +17,16 @@ public class SumTwoNumbersTest {
 
         assertTrue(assertCorrectSum(1234, 12034));
         assertTrue(assertCorrectSum(0, 1949));
+        assertTrue(assertCorrectSum(1239, 949));
+        assertTrue(assertCorrectSum(5239, 99949));
+        assertTrue(assertCorrectSum(5239, 999949));
+        assertTrue(assertCorrectSum(5239, 899949));
     }
 
     @Test
     public void addSameSizedTwoNumbers() throws Exception {
         assertTrue(assertCorrectSum(12, 12));
         assertTrue(assertCorrectSum(1239, 1949));
-        assertTrue(assertCorrectSum(1239, 949));
-        assertTrue(assertCorrectSum(5239, 99949));
         assertTrue(assertCorrectSum(0, 1));
         assertTrue(assertCorrectSum(5, 5));
     }
