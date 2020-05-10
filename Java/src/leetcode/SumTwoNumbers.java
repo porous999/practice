@@ -19,7 +19,27 @@ class SumTwoNumbers {
     }
 
     ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return loopedSolution(l1, l2);
+        // return loopedSolution(l1, l2);
+        return recursiveSolution(l1, l2, 0);
+    }
+
+    private ListNode recursiveSolution(ListNode numlist1, ListNode numlist2, int carry) {
+
+        if (null == numlist1 && null == numlist2)
+            return carry != 0? new ListNode(carry): null;
+        else {
+            int sum = (null == numlist1? 0 : numlist1.val) + (null == numlist2? 0 : numlist2.val) + carry;
+            carry = sum / 10;
+            ListNode tempNode = new ListNode(sum % 10);
+            if (numlist1 != null && numlist2 != null)
+                tempNode.next = recursiveSolution(numlist1.next, numlist2.next, carry);
+            else if(numlist1 == null)
+                tempNode.next = recursiveSolution(null, numlist2.next, carry);
+            else
+                tempNode.next = recursiveSolution(numlist1.next, null, carry);
+
+            return tempNode;
+        }
     }
 
     private static ListNode loopedSolution(ListNode l1, ListNode l2) {
