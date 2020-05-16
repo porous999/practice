@@ -8,6 +8,8 @@ package leetcode;
  */
 class MultiplyStrings {
 
+    MultiplyStrings() {}
+
     static String multiply(String num1, String num2) {
         return recursiveSolution(num1, num2);
     }
@@ -44,7 +46,7 @@ class MultiplyStrings {
     static String getSimpleSum(String num1Str, String num2Str, int carry) {
 
         if (num2Str.isEmpty() && num1Str.isEmpty())
-            return "";
+            return carry == 0? "": String.valueOf(carry);
         else {
 
             int num2StrLen = num2Str.length();

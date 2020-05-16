@@ -26,7 +26,7 @@ public class MultiplyStringsTest {
         assertTrue(assertProduct(123, 456, false));
         assertTrue(assertProduct(123, 0, false));
         assertTrue(assertProduct(0, 123, false));
-        assertEquals("111932631112635269", multiply("123456789","987654321"));
+        assertEquals("121932631112635269", multiply("123456789","987654321"));
     }
 
     @Test
@@ -44,6 +44,7 @@ public class MultiplyStringsTest {
         assertTrue(assertSum(1, 2));
         assertTrue(assertSum(22, 33));
         assertTrue(assertSum(22, 3300));
+        assertTrue(assertSum(99999, 9999));
     }
 
     private boolean assertSum(int num1, int num2) {
