@@ -20,8 +20,13 @@ public class MultiplyStringsTest {
         assertTrue(assertProduct(1, 2, false));
         assertTrue(assertProduct(0, 2, false));
         assertTrue(assertProduct(999, 9, false));
+        assertTrue(assertProduct(200010, 109, false));
         assertTrue(assertProduct(100, 2, false));
         assertTrue(assertProduct(99999, 9999, false));
+        assertTrue(assertProduct(123, 456, false));
+        assertTrue(assertProduct(123, 0, false));
+        assertTrue(assertProduct(0, 123, false));
+        assertEquals("111932631112635269", multiply("123456789","987654321"));
     }
 
     @Test
@@ -29,6 +34,8 @@ public class MultiplyStringsTest {
 
         assertTrue(assertProduct(1, 2, true));
         assertTrue(assertProduct(0, 2, true));
+        assertTrue(assertProduct(0, 20, true));
+        assertTrue(assertProduct(100, 0, true));
         assertTrue(assertProduct(999, 9, true));
     }
 

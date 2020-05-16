@@ -17,6 +17,8 @@ class MultiplyStrings {
             return "";
         else if (num1.isEmpty() || num2.isEmpty())
             return num1.isEmpty()? num2: num1;
+        else if (num1.equals("0") || num2.equals("0"))
+            return "0";
         else
             return multiplyRecursively(num1, num2,"", 0);
     }
@@ -26,7 +28,7 @@ class MultiplyStrings {
         if (shift >= num2.length())
             return result;
         else {
-            int num2Int = Integer.parseInt(String.valueOf(num2.charAt(shift)));
+            int num2Int = Integer.parseInt(String.valueOf(num2.charAt(num2.length() - shift - 1)));
             String prodStr = getSimpleProduct(num1, num2Int, 0);
             if (result.isEmpty())
                 result = prodStr;
@@ -62,8 +64,12 @@ class MultiplyStrings {
 
     static String getSimpleProduct(String num1Str, int num2, int carry) {
 
+        if (num2 == 0)
+            return "0";
         if (num1Str.isEmpty())
             return carry == 0? "": String.valueOf(carry);
+        else if (num1Str.equals("0"))
+            return "0";
         else {
 
             int num1StrLen = num1Str.length();
