@@ -1,5 +1,7 @@
 package leetcode;
 
+import leetcode.utils.ListNode;
+
 /**
  * Created by tanmays on 10/5/20.
  *
@@ -8,15 +10,6 @@ package leetcode;
 
 
 class SumTwoNumbers {
-
-    // Definition for singly-linked list.
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
     ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         // return loopedSolution(l1, l2);
@@ -28,15 +21,15 @@ class SumTwoNumbers {
         if (null == numlist1 && null == numlist2)
             return carry != 0? new ListNode(carry): null;
         else {
-            int sum = (null == numlist1? 0 : numlist1.val) + (null == numlist2? 0 : numlist2.val) + carry;
+            int sum = (null == numlist1? 0 : numlist1.getVal()) + (null == numlist2? 0 : numlist2.getVal()) + carry;
             carry = sum / 10;
             ListNode tempNode = new ListNode(sum % 10);
             if (numlist1 != null && numlist2 != null)
-                tempNode.next = recursiveSolution(numlist1.next, numlist2.next, carry);
+                tempNode.setNext(recursiveSolution(numlist1.getNext(), numlist2.getNext(), carry));
             else if(numlist1 == null)
-                tempNode.next = recursiveSolution(null, numlist2.next, carry);
+                tempNode.setNext(recursiveSolution(null, numlist2.getNext(), carry));
             else
-                tempNode.next = recursiveSolution(numlist1.next, null, carry);
+                tempNode.setNext(recursiveSolution(numlist1.getNext(), null, carry));
 
             return tempNode;
         }
@@ -52,12 +45,12 @@ class SumTwoNumbers {
 
         while (l1 != null || l2 != null || carry != 0) {
 
-            sum = (null == l1? 0 : l1.val) + (null == l2? 0 : l2.val) + carry;
+            sum = (null == l1? 0 : l1.getVal()) + (null == l2? 0 : l2.getVal()) + carry;
             carry = sum / 10;
             tempNode = new ListNode(sum % 10);
 
             if (null != traversingNode) {
-                traversingNode.next = tempNode;
+                traversingNode.setNext(tempNode);
                 traversingNode = tempNode;
             }
 
@@ -67,9 +60,9 @@ class SumTwoNumbers {
             }
 
             if (null != l1)
-                l1 = l1.next;
+                l1 = l1.getNext();
             if (null != l2)
-                l2 = l2.next;
+                l2 = l2.getNext();
         }
 
         return sumHeadNode;
