@@ -31,16 +31,6 @@ public class HelloWorld {
         //System.out.println("abcd".compareTo("abcde"));
     }
 
-
-
-    private static java.sql.Timestamp convertRFC3339NanoToTimestamp(String t) {
-        return new java.sql.Timestamp(convertIso8601ToInstant(t).toEpochMilli());
-    }
-
-    private static Instant convertIso8601ToInstant(String timestamp) throws DateTimeParseException {
-        return OffsetDateTime.parse(timestamp).toInstant();
-    }
-
     static String fetchWordInBetweenFromText(String textStr, String prevWord, String nextWord) {
 
         String wordOfInterest = "";
