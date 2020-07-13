@@ -1,10 +1,12 @@
 package HelloWorld;
 
+import com.google.common.base.Stopwatch;
 import org.junit.Test;
 
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.concurrent.TimeUnit;
 
 import static HelloWorld.HelloWorld.fetchWordInBetweenFromText;
 import static HelloWorld.HelloWorld.solution;
@@ -21,6 +23,20 @@ public class HelloWorldTest {
     public void fetchingExercise() {
         String text = "Find the shark between to \"shark\" for here!";
         assertEquals("shark", fetchWordInBetweenFromText(text, "to", "for"));
+    }
+
+    @Test
+    public void testStopWatch() throws InterruptedException {
+        Stopwatch myStopwatch = Stopwatch.createStarted();
+        Thread.sleep(1000);
+        System.out.println("Start 1: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
+        myStopwatch.reset();
+        Thread.sleep(1000);
+        System.out.println("Reset 1: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
+        myStopwatch.start();
+        Thread.sleep(1000);
+        System.out.println("Start 2: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
+        System.out.println(myStopwatch.stop());
     }
 
     @Test
