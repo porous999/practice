@@ -1,15 +1,14 @@
-package HelloWorld;
+package helloworld;
 
 import com.google.common.base.Stopwatch;
 import org.junit.Test;
 
-import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
-import static HelloWorld.HelloWorld.fetchWordInBetweenFromText;
-import static HelloWorld.HelloWorld.solution;
+import static helloworld.HelloWorld.fetchWordInBetweenFromText;
+import static helloworld.HelloWorld.solution;
 import static com.mist.ValidateDNSThrottle.convertRFC3339NanoToTimestamp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -34,6 +33,8 @@ public class HelloWorldTest {
         Thread.sleep(1000);
         System.out.println("Reset 1: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
         myStopwatch.start();
+        Thread.sleep(1000);
+        System.out.println("Start 2: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
         Thread.sleep(1000);
         System.out.println("Start 2: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
         System.out.println(myStopwatch.stop());

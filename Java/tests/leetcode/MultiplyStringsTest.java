@@ -27,6 +27,7 @@ public class MultiplyStringsTest {
         assertTrue(assertProduct(123, 0, false));
         assertTrue(assertProduct(0, 123, false));
         assertEquals("121932631112635269", multiply("123456789","987654321"));
+        assertEquals("9999999989000000001", multiply("9999999999","999999999"));
     }
 
     @Test

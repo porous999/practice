@@ -1,10 +1,8 @@
-package HelloWorld;
+package helloworld;
 
 import org.junit.Test;
 
 import java.lang.reflect.*;
-
-import static org.junit.Assert.*;
 
 public class TryReflectionsTest {
 
