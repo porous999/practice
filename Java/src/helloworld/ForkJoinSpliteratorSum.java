@@ -1,6 +1,5 @@
 package helloworld;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
@@ -12,9 +11,9 @@ import java.util.concurrent.RecursiveTask;
 
 public class ForkJoinSpliteratorSum extends RecursiveTask<Map<String, Object>> {
 
-    static final int splitFactor = 50_000;
+    static final int splitFactor = 4;
 
-    // static final Logger logger = logger.getLogger(ForkJoinSpliteratorSum.class);
+     static final Logger logger = Logger.getLogger(ForkJoinSpliteratorSum.class);
 
     private List<Integer> arrayList = null;
     private transient Spliterator<Integer> theSpliterator = null;
@@ -29,36 +28,31 @@ public class ForkJoinSpliteratorSum extends RecursiveTask<Map<String, Object>> {
 
     @Override
     protected Map<String, Object> compute() {
-        Map<String, Object> eachMap1 = null;
-        Map<String, Object> eachMap2 = null;
-        if (null == theSpliterator) {
-            // logger.info("Initializing splitter!");
-            Spliterator<Integer> innerSpliterator = arrayList.spliterator();
-            ForkJoinSpliteratorSum spliteratorSum = new ForkJoinSpliteratorSum(innerSpliterator.trySplit());
-            ForkJoinSpliteratorSum spliteratorSum2 = new ForkJoinSpliteratorSum(innerSpliterator);
+        Map<String, Object> eachMap1;
+        Map<String, Object> eachMap2;
+        if (null == theSpliterator || theSpliterator.estimateSize() > splitFactor) {
+            logger.info("Split zone!");
+            if (theSpliterator == null) {
+                logger.info("Initialize theSpliterator");
+                theSpliterator = arrayList.spliterator();
+            }
+
+            ForkJoinSpliteratorSum spliteratorSum = new ForkJoinSpliteratorSum(theSpliterator.trySplit());
+            ForkJoinSpliteratorSum spliteratorSum2 = new ForkJoinSpliteratorSum(theSpliterator);
             ForkJoinTask.invokeAll(spliteratorSum, spliteratorSum2);
             eachMap1 = spliteratorSum.getRawResult();
             eachMap2 = spliteratorSum2.getRawResult();
         } else {
-            // logger.info("Split is not null, so more fornication/processing!");
-            if (theSpliterator.estimateSize() > splitFactor) {
-                // logger.info("Split zone!");
-                ForkJoinSpliteratorSum spliteratorSum = new ForkJoinSpliteratorSum(theSpliterator.trySplit());
-                ForkJoinSpliteratorSum spliteratorSum2 = new ForkJoinSpliteratorSum(theSpliterator);
-                ForkJoinTask.invokeAll(spliteratorSum, spliteratorSum2);
-                eachMap1 = spliteratorSum.getRawResult();
-                eachMap2 = spliteratorSum2.getRawResult();
-            } else {
-                // logger.info("Sum zone!");
-                Map<String, Object> sumMap = new HashMap<>();
-                theSpliterator.forEachRemaining(eachInt -> {
-                    // logger.info(String.format("Adding %s to %s", eachInt, sumMap.getOrDefault("sum", 0)));
-                    sumMap.put("sum", (int) sumMap.getOrDefault("sum", 0) + eachInt);
-                });
-                // logger.info(String.format("Sum map sum before return %s", sumMap.getOrDefault("sum", 0)));
-                return sumMap;
-            }
+            logger.info("Sum zone!");
+            Map<String, Object> sumMap = new HashMap<>();
+            theSpliterator.forEachRemaining(eachInt -> {
+                // logger.info(String.format("Adding %s to %s", eachInt, sumMap.getOrDefault("sum", 0)));
+                sumMap.put("sum", (int) sumMap.getOrDefault("sum", 0) + eachInt);
+            });
+            // logger.info(String.format("Sum map sum before return %s", sumMap.getOrDefault("sum", 0)));
+            return sumMap;
         }
+
         return mergeResult(eachMap1, eachMap2);
     }
 
