@@ -33,6 +33,8 @@ public class ForkJoinSpliteratorSum extends RecursiveTask<Map<String, Object>> {
         if (null == theSpliterator || theSpliterator.estimateSize() > splitFactor) {
             logger.info("Split zone!");
             if (theSpliterator == null) {
+                if (null == arrayList)
+                    return null;
                 logger.info("Initialize theSpliterator");
                 theSpliterator = arrayList.spliterator();
             }
