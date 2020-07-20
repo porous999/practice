@@ -48,10 +48,8 @@ public class ForkJoinSpliteratorSum extends RecursiveTask<Map<String, Object>> {
             logger.info("Sum zone!");
             Map<String, Object> sumMap = new HashMap<>();
             theSpliterator.forEachRemaining(eachInt -> {
-                // logger.info(String.format("Adding %s to %s", eachInt, sumMap.getOrDefault("sum", 0)));
                 sumMap.put("sum", (int) sumMap.getOrDefault("sum", 0) + eachInt);
             });
-            // logger.info(String.format("Sum map sum before return %s", sumMap.getOrDefault("sum", 0)));
             return sumMap;
         }
 
