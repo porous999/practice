@@ -45,7 +45,7 @@ public class Miscellaneous {
         return arrayGen;
     }
 
-    static void printListOfNumbers(List<Integer> listOfNumbers) {
+    public static void printListOfNumbers(List<Integer> listOfNumbers) {
         StringBuilder numberListStringBuilder = new StringBuilder();
         for (int eachNum:listOfNumbers) {
             numberListStringBuilder.append(String.format("%d, ", eachNum));
