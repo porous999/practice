@@ -26,9 +26,8 @@ class ObservedThreadedSum {
         @Override
         public void run() {
             int sum = 0;
-            for (int i = 0; i < numArray.length; i++) {
-                //logger.debug("num array[" + i + "]= " + numArray[i]);
-                sum += numArray[i];
+            for (int value : numArray) {
+                sum += value;
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException e) {
