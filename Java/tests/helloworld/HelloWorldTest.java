@@ -5,11 +5,12 @@ import org.junit.Test;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import static com.mist.ValidateDNSThrottle.convertRFC3339NanoToTimestamp;
 import static helloworld.HelloWorld.fetchWordInBetweenFromText;
 import static helloworld.HelloWorld.solution;
-import static com.mist.ValidateDNSThrottle.convertRFC3339NanoToTimestamp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -17,6 +18,7 @@ import static org.junit.Assert.assertFalse;
  * Created by tanmays on 9/5/20.
  */
 public class HelloWorldTest {
+    Random random = new Random();
 
     @Test
     public void fetchingExercise() {
@@ -56,9 +58,6 @@ public class HelloWorldTest {
         assertFalse(Duration.between(whenInstant, when2Instant).getSeconds() > 30);
         assertFalse(whenInstant.isAfter(whenInstant));
         assertFalse(whenInstant.isBefore(whenInstant));
-        //System.out.println(whenInstant.compareTo(when2Instant));
-        //System.out.println(whenInstant.compareTo(whenInstant));
-        //System.out.println(when2Instant.compareTo(whenInstant));
     }
 
     @Test
