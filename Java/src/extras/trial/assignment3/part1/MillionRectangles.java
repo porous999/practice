@@ -1,4 +1,4 @@
-package Extra.trial.assignment3.part1;
+package extras.trial.assignment3.part1;
 
 import javax.swing.*;
 

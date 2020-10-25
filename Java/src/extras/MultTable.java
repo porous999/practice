@@ -1,4 +1,4 @@
-package Extra;
+package extras;
 
 class MultTable
 {
