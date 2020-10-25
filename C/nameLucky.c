@@ -33,8 +33,7 @@ int main ()
 	int luckyNum, strASCII, i = 0;
 	char *newStr;
 	newStr = (char *) malloc (40);
-//	newStr = "Ina Purkayastha";
-	printf ("Enter the string:");
+	printf ("Enter the string: ");
 	scanf ("%s", newStr);
 	printf ("String is: %s\n", newStr);
 	strASCII = 0;
