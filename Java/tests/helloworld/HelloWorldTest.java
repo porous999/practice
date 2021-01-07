@@ -8,7 +8,6 @@ import java.time.Instant;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static com.mist.ValidateDNSThrottle.convertRFC3339NanoToTimestamp;
 import static helloworld.HelloWorld.fetchWordInBetweenFromText;
 import static helloworld.HelloWorld.solution;
 import static org.junit.Assert.assertEquals;
@@ -40,11 +39,6 @@ public class HelloWorldTest {
         Thread.sleep(1000);
         System.out.println("Start 2: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
         System.out.println(myStopwatch.stop());
-    }
-
-    @Test
-    public void testConvertRFC3339NanoToTimestamp() {
-        assertEquals(1588659002795L, convertRFC3339NanoToTimestamp("2020-05-05T06:10:02.795424597Z").getTime());
     }
 
     @Test
