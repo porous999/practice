@@ -10,6 +10,9 @@ public class FindingSiblingsTest {
     @Test
     public void testGetSiblings() {
         assertEquals(new int[]{-1}, findingSiblingsObj.getSiblings(new int[]{1}, 1));
+        assertEquals(new int[]{-1}, findingSiblingsObj.getSiblings(new int[]{1,2,3,4}, 4));
+        assertEquals(new int[]{5}, findingSiblingsObj.getSiblings(new int[]{1,2,3,4,5}, 4));
+        assertEquals(new int[]{4}, findingSiblingsObj.getSiblings(new int[]{1,2,3,4,5}, 5));
         assertEquals(new int[]{4, 6}, findingSiblingsObj.getSiblings(new int[]{1,2,3,4,5,6}, 5));
         assertEquals(new int[]{4, 5}, findingSiblingsObj.getSiblings(new int[]{1,2,3,4,5,6}, 6));
         assertEquals(new int[]{4, 5, 6}, findingSiblingsObj.getSiblings(new int[]{1,2,3,4,5,6,7}, 7));
