@@ -6,9 +6,12 @@ import org.junit.Test;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 import static helloworld.HelloWorld.fetchWordInBetweenFromText;
+import static helloworld.HelloWorld.getSum;
 import static helloworld.HelloWorld.solution;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -23,6 +26,17 @@ public class HelloWorldTest {
     public void fetchingExercise() {
         String text = "Find the shark between to \"shark\" for here!";
         assertEquals("shark", fetchWordInBetweenFromText(text, "to", "for"));
+    }
+
+    @Test
+    public void testSetToVarArgs() {
+        Set<String> thisSet = new TreeSet<>();
+        thisSet.add("1");
+        thisSet.add("2");
+        thisSet.add("3");
+        thisSet.add("4");
+        thisSet.add("5");
+        assertEquals(15, getSum(thisSet.toArray(new String[0])));
     }
 
     @Test

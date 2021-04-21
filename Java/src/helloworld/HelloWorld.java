@@ -102,6 +102,14 @@ public class HelloWorld {
         return findMinMissingNumber(A);
     }
 
+    static int getSum(String ... nums) {
+        int sum = 0;
+        for (String eachNum : nums)
+            sum += Integer.parseInt(eachNum);
+
+        return sum;
+    }
+
     static int findMinMissingNumber(int[] thisArray) {
 
         int maxValPossibleInA = 1_000_000;
