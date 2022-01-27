@@ -1,11 +1,9 @@
 package helloworld;
 
-import com.google.common.base.Stopwatch;
 import org.junit.Test;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +18,6 @@ import static org.junit.Assert.assertFalse;
  * Created by tanmays on 9/5/20.
  */
 public class HelloWorldTest {
-    Random random = new Random();
 
     @Test
     public void fetchingExercise() {
@@ -37,22 +34,6 @@ public class HelloWorldTest {
         thisSet.add("4");
         thisSet.add("5");
         assertEquals(15, getSum(thisSet.toArray(new String[0])));
-    }
-
-    @Test
-    public void testStopWatch() throws InterruptedException {
-        Stopwatch myStopwatch = Stopwatch.createStarted();
-        Thread.sleep(1000);
-        System.out.println("Start 1: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
-        myStopwatch.reset();
-        Thread.sleep(1000);
-        System.out.println("Reset 1: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
-        myStopwatch.start();
-        Thread.sleep(1000);
-        System.out.println("Start 2: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
-        Thread.sleep(1000);
-        System.out.println("Start 2: " + myStopwatch.elapsed(TimeUnit.MILLISECONDS));
-        System.out.println(myStopwatch.stop());
     }
 
     @Test

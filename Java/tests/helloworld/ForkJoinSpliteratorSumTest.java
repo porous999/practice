@@ -1,8 +1,6 @@
 package helloworld;
 
-import com.google.common.base.Stopwatch;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -40,12 +38,11 @@ public class ForkJoinSpliteratorSumTest {
         List<Integer> listOfNumbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
         printListOfNumbers(listOfNumbers);
 
-        ForkJoinPool pool = new ForkJoinPool();
         ForkJoinSpliteratorSum testForkJoinSpliteratorSum = new ForkJoinSpliteratorSum(listOfNumbers);
-        Stopwatch mySw = Stopwatch.createStarted();
+        long startTime = System.currentTimeMillis();
         //Map<String, Object> sum = pool.invoke(new ForkJoinSpliteratorSum(listOfNumbers));
         Map<String, Object> sum = testForkJoinSpliteratorSum.invoke();
-        logger.info(String.format("Time elapsed: %d", mySw.elapsed(TimeUnit.MICROSECONDS)));
+        logger.info(String.format("Time elapsed: %d", System.currentTimeMillis()- startTime));
         logger.info(String.format("Result is here: %s", sum.getOrDefault("sum", 0)));
         assertEquals(55, (int) sum.getOrDefault("sum", 0));
     }
@@ -58,13 +55,13 @@ public class ForkJoinSpliteratorSumTest {
 
         ForkJoinPool pool = new ForkJoinPool();
         //ForkJoinSpliteratorSum testForkJoinSpliteratorSum = new ForkJoinSpliteratorSum(listOfNumbers);
-        Stopwatch mySw = Stopwatch.createStarted();
+        long startTime = System.currentTimeMillis();
         Map<String, Object> sum = pool.invoke(new ForkJoinSpliteratorSum(listOfNumbers));
-        logger.info(String.format("Time elapsed: %d", mySw.elapsed(TimeUnit.MICROSECONDS)));
+        logger.info(String.format("Time elapsed: %d", System.currentTimeMillis()- startTime));
         logger.info(String.format("Result is here: %s", sum.getOrDefault("sum", 0)));
-        mySw.reset(); mySw.start();
+        startTime = System.currentTimeMillis();
         int linearSum = linearSumMethod(listOfNumbers);
-        logger.info(String.format("Time elapsed in linear: %d", mySw.elapsed(TimeUnit.MICROSECONDS)));
+        logger.info(String.format("Time elapsed in linear: %d", System.currentTimeMillis()- startTime));
         assertEquals(linearSum, (int) sum.getOrDefault("sum", 0));
     }
 

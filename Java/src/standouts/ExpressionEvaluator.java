@@ -1,23 +1,21 @@
-package src.standouts;
+package standouts;
 
 import java.util.Stack;
 
 /**
- * Created by tanny.
+ * https://leetcode.com/explore/challenge/card/september-leetcoding-challenge-2021/637/week-2-september-8th-september-14th/3971/
+ * Constraints:
+ *      1 <= s.length <= 3 * 105
+ *      s consists of digits, '+', '-', '(', ')', and ' '.
+ *      s represents a valid expression.
+ *      '+' is not used as a unary operation.
+ *      '-' could be used as a unary operation but it has to be inside parentheses.
+ *      There will be no two consecutive operators in the input.
+ *      Every number and running calculation will fit in a signed 32-bit integer.
  */
 
 public class ExpressionEvaluator {
-    public static void main(String[] args) {
-        String inputExpression;
-        //Scanner inputExpressionScanner = new Scanner(System.in);
-        //inputExpression = inputExpressionScanner.nextLine();
-        inputExpression = "2+3*4*(13-3*(4/2-1))";
-        inputExpression = "100 * ( 2 + 12 ) / 14";
-        float expressionVal = calculateExpression(inputExpression);
-        System.out.print(expressionVal);
-    }
-
-    private static float calculateExpression(String inputExpression) {
+    float calculateExpression(String inputExpression) {
 
         // convert the expression string to char array
         char[] tokens = inputExpression.toCharArray();
@@ -96,11 +94,7 @@ public class ExpressionEvaluator {
     private static boolean hasPrecedence(char thisOperator, char nextOperator) {
         if (nextOperator == '(' || nextOperator == ')')
             return false;
-        else if ((thisOperator == '*' || thisOperator == '/') && (nextOperator == '+'
-                        || nextOperator == '-'))
-            return false;
-        else
-            return true;
+        return (thisOperator != '*' && thisOperator != '/') || (nextOperator != '+' && nextOperator != '-');
     }
 
     private static float calculateValue(char operator, float val2, float val1) {
