@@ -44,11 +44,13 @@
             </exclusions>
         </dependency>
 
+        <!--
+        Dependabot alerts - don't need this, most probably
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>28.1-jre</version>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
         <dependency>
@@ -79,11 +81,14 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <!--
+        Dependabot alerts - don't need this, most probably
+        
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.3</version>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
