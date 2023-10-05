@@ -1,4 +1,4 @@
-package src.Extra;
+package extras;
 
 // Create a new thread.
 class NewThread implements Runnable

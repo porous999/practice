@@ -1,4 +1,4 @@
-package src.Extra;
+package extras;
 
 class test_12345
 {
